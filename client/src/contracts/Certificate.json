@@ -1,0 +1,112 @@
+{
+  "contractName": "Certificate",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/OST/Documents/certificate-verification-dapp/contracts/Certificate.sol\":\"Certificate\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/OST/Documents/certificate-verification-dapp/contracts/Certificate.sol\":{\"keccak256\":\"0xea641770b7add12ac294c31f4ab3d1a50b31e70576ad286c303e9de601434c81\",\"urls\":[\"bzz-raw://407ee6db3ad97d3cb751c47b1af34c24c859e44bebcb1ccbbe5d28e94a029a61\",\"dweb:/ipfs/QmaQ2X6rLb8eAsfgSGgPiC2xZhS4w1VGVrTy9JfRPnQ9eu\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72315820be2a2075314b09363e9889102e637f3f3462dc580afdd07f52c9792a62a5ae9564736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820be2a2075314b09363e9889102e637f3f3462dc580afdd07f52c9792a62a5ae9564736f6c63430005100032",
+  "sourceMap": "26:25:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:25:0;;;;;;;",
+  "deployedSourceMap": "26:25:0:-;;;;;",
+  "source": "pragma solidity >=0.5.0;\n\ncontract Certificate {\n\n}\n",
+  "sourcePath": "/Users/OST/Documents/certificate-verification-dapp/contracts/Certificate.sol",
+  "ast": {
+    "absolutePath": "/Users/OST/Documents/certificate-verification-dapp/contracts/Certificate.sol",
+    "exportedSymbols": {
+      "Certificate": [
+        2
+      ]
+    },
+    "id": 3,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "Certificate",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "26:25:0"
+      }
+    ],
+    "src": "0:52:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/OST/Documents/certificate-verification-dapp/contracts/Certificate.sol",
+    "exportedSymbols": {
+      "Certificate": [
+        2
+      ]
+    },
+    "id": 3,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "Certificate",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "26:25:0"
+      }
+    ],
+    "src": "0:52:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x21C56FaBC29e24f233d02e3616Bec15b10d18DCF",
+      "transactionHash": "0xe304e3bcdab87a878982c2a0504911d0163fdb101d4e405eec4d9f5870a829fb"
+    }
+  },
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-05-02T16:14:15.558Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
