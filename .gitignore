@@ -6,3 +6,9 @@ package-lock.json
 
 # DS Store
 .DS_Store
+
+# Do not track builds
+build/
+
+# NPM package generated files:
+contract_build
