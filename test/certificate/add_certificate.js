@@ -12,6 +12,7 @@ contract('Certificate::addCertificate', async (accounts) => {
   beforeEach(async () => {
     certificate = await Certificate.new();
     param = {
+      id: 'ab1cd2',
       userName: 'XYZ',
       issuingAuthority: 'PQR',
       courseName: 'LMN',
@@ -24,14 +25,15 @@ contract('Certificate::addCertificate', async (accounts) => {
     it('should successfully add the certificate.', async () => {
       await certificate.addCertificate(
         param.userName,
-        param.issuingAuthority,
+        param.id,
         param.courseName,
+        param.issuingAuthority,
         param.issueDate,
         param.user,
         { from: param.user },
       );
 
-      const certificateDetails = await certificate.certificates.call(param.user);
+      const certificateDetails = await certificate.certificates.call(param.user, param.id);
 
       assert.strictEqual(
         certificateDetails.isAdded,
