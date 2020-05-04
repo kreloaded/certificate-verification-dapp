@@ -32,10 +32,9 @@ contract('Certificate::addCertificate', async (accounts) => {
 
   contract('Positive Tests', async () => {
     it('should successfully get the certificate', async () => {
-      const certificateDetails = await certificate.getCertificate(
+      const certificateDetails = await certificate.getCertificate.call(
         param.user,
         param.id,
-        { from: param.user },
       );
 
       assert.strictEqual(
