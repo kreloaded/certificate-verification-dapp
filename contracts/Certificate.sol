@@ -63,7 +63,7 @@ contract Certificate {
                 "User address must not be empty"
             );
             require(
-                bytes(_id).length == 0,
+                bytes(_id).length != 0,
                 "Certificate id must not be empty."
             );
 

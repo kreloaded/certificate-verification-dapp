@@ -18,26 +18,30 @@ contract('Certificate::addCertificate', async (accounts) => {
       issueDate: Date.parse('Tue Feb 23 2016'),
       user: user,
     };
+
+    await certificate.addCertificate(
+      param.userName,
+      param.id,
+      param.courseName,
+      param.issuingAuthority,
+      param.issueDate,
+      param.user,
+      { from: param.user },
+    );
   });
 
   contract('Positive Tests', async () => {
-    it('should successfully add the certificate.', async () => {
-      await certificate.addCertificate(
-        param.userName,
-        param.id,
-        param.courseName,
-        param.issuingAuthority,
-        param.issueDate,
+    it('should successfully get the certificate', async () => {
+      const certificateDetails = await certificate.getCertificate(
         param.user,
+        param.id,
         { from: param.user },
       );
 
-      const certificateDetails = await certificate.certificates.call(param.user, param.id);
-
       assert.strictEqual(
-        certificateDetails.isAdded,
-        true,
-        'Certificate is not successfully added.'
+        certificateDetails[0],
+        param.userName,
+        `User name doesn't match.`,
       );
     });
   });
