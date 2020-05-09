@@ -57,7 +57,7 @@ contract Certificate {
     function getCertificate(address _user, string memory _id)
         public
         view
-        returns(string memory, string memory, string memory, uint) {
+        returns(string memory, string memory, string memory, uint256) {
             require(
                 _user != address(0),
                 "User address must not be empty"
