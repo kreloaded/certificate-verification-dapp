@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import getWeb3 from "../../../getWeb3";
 import './AddCertificate.css';
 
 class AddCertificate extends Component {
@@ -11,10 +13,27 @@ class AddCertificate extends Component {
             certificateId: '',
             courseName: '',
             issuingAuthority: '',
-            issueDate: ''
+            issueDate: '',
+            web3: null,
+            account: '',
         }
+        this.loadBlockchain = this.loadBlockchain.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.loadBlockchain();
+    }
+
+    async loadBlockchain() {
+        const web3 = await getWeb3();
+        const accounts = await web3.eth.getAccounts();
+        this.setState({
+            web3: web3,
+            account: accounts[0],
+        });
+        console.log('account address :-', this.state.account);
     }
 
     handleChange(event) {
