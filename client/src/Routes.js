@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import AddCertificate from './components/AddCertificate';
-import ViewCertificate from './components/ViewCertificate';
+import Navbar from './components/other/Navbar';
+import Home from './components/other/Home';
+import AddCertificate from './components/certificate/add/AddCertificate';
+import ViewCertificate from './components/certificate/view/ViewCertificate';
 
 class Routes extends Component {
   render () {

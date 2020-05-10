@@ -1,0 +1,11 @@
+.form {
+    margin-top: 50px;
+    margin-left: 300px;
+    margin-right: 200px;
+    align-content: center;
+    /* align-items: center; */
+}
+
+.form-title{
+    margin-top: 50px;
+}
