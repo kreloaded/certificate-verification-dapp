@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import getWeb3 from "../../../getWeb3";
+import web3 from '../../../getWeb3';
+import CertificateContract from '../../../contracts/Certificate.json';
+
 import './AddCertificate.css';
 
 class AddCertificate extends Component {
@@ -27,13 +29,23 @@ class AddCertificate extends Component {
     }
 
     async loadBlockchain() {
-        const web3 = await getWeb3();
         const accounts = await web3.eth.getAccounts();
+        console.log('accounts :-', accounts);
+
+        const networkId = await web3.eth.net.getId();
+        const deployedNetwork = CertificateContract.networks[networkId];
+        const instance = new web3.eth.Contract(
+            CertificateContract.abi,
+            deployedNetwork && deployedNetwork.address,
+        );
+
         this.setState({
-            web3: web3,
+            web3,
             account: accounts[0],
+            contract: instance
         });
-        console.log('account address :-', this.state.account);
+
+        console.log('contract instance :-', this.state.contract);
     }
 
     handleChange(event) {
@@ -42,9 +54,35 @@ class AddCertificate extends Component {
         this.setState(change);
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
-        alert(`Submit clicked with ${JSON.stringify(this.state)}`);
+        // alert(`Submit clicked with ${JSON.stringify(this.state)}`);
+
+        const contract = this.state.contract;
+
+        const addCertificateParams = {
+            userName: this.state.fname + ' ' + this.state.lname,
+            id: this.state.certificateId,
+            courseName: this.state.courseName,
+            issuingAuthority: this.state.issuingAuthority,
+            issueDate: Date.parse(this.state.issueDate),
+            accountAddress: this.state.account,
+        }
+
+        console.log('add cert params :-', addCertificateParams);
+        const txReceipt = await contract.methods.addCertificate(
+            addCertificateParams.userName,
+            addCertificateParams.id,
+            addCertificateParams.courseName,
+            addCertificateParams.issuingAuthority,
+            addCertificateParams.issueDate,
+            addCertificateParams.accountAddress
+        ).send({
+            from: this.state.account,
+            gas: 3000000
+         });
+
+        console.log('tx receipt :-', txReceipt);
     }
 
     render () {
