@@ -6,8 +6,6 @@ import Home from './components/other/Home';
 import AddCertificate from './components/certificate/add/AddCertificate';
 import ViewCertificate from './components/certificate/view/ViewCertificate';
 
-import Modal from './components/other/Modal';
-
 class Routes extends Component {
   render () {
     return (

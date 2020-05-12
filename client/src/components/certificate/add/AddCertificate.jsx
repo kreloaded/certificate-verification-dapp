@@ -18,6 +18,8 @@ class AddCertificate extends Component {
             issueDate: '',
             web3: null,
             account: '',
+            receipt: null,
+            isReceiptGenerated: false,
         }
         this.loadBlockchain = this.loadBlockchain.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -82,7 +84,22 @@ class AddCertificate extends Component {
             gas: 3000000
          });
 
-        console.log('tx receipt :-', txReceipt);
+        console.log('tx receipt :-', JSON.stringify(txReceipt));
+
+        const receiptData = {
+            transactionHash: txReceipt.transactionHash,
+            blockHash: txReceipt.blockHash,
+            blockNumber: txReceipt.blockNumber,
+            from: txReceipt.from,
+            to: txReceipt.to,
+            gasUsed: txReceipt.gasUsed,
+            cumulativeGasUsed: txReceipt.cumulativeGasUsed
+        }
+
+        this.setState({
+            isReceiptGenerated: true,
+            receipt: receiptData
+        });
     }
 
     render () {
@@ -168,6 +185,43 @@ class AddCertificate extends Component {
                     </div><br />
                     <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Submit Certificate</button>
                 </form>
+                <div>
+                    {this.state.isReceiptGenerated ?
+                        <div className="receipt">
+                            <h1 className="table-title">Transaction Receipt</h1>
+                            <table>
+                                <tr>
+                                    <td>Transaction Hash </td>
+                                    <td>{this.state.receipt.transactionHash}</td>
+                                </tr>
+                                <tr>
+                                    <td>Block Hash </td>
+                                    <td>{this.state.receipt.blockHash}</td>
+                                </tr>
+                                <tr>
+                                    <td>Block Number </td>
+                                    <td>{this.state.receipt.blockNumber}</td>
+                                </tr>
+                                <tr>
+                                    <td>From </td>
+                                    <td>{this.state.receipt.from}</td>
+                                </tr>
+                                <tr>
+                                    <td>To</td>
+                                    <td>{this.state.receipt.to}</td>
+                                </tr>
+                                <tr>
+                                    <td>Gas Used</td>
+                                    <td>{this.state.receipt.gasUsed}</td>
+                                </tr>
+                                <tr>
+                                    <td>Cumulative Gas Used</td>
+                                    <td>{this.state.receipt.cumulativeGasUsed}</td>
+                                </tr>
+                            </table>
+                        </div>
+                         : null}
+                </div>
             </div>
         );
     };
