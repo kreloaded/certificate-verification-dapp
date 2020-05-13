@@ -190,34 +190,32 @@ class AddCertificate extends Component {
                         <div className="receipt">
                             <h1 className="table-title">Transaction Receipt</h1>
                             <table>
-                                <tr>
-                                    <td>Transaction Hash </td>
-                                    <td>{this.state.receipt.transactionHash}</td>
-                                </tr>
-                                <tr>
-                                    <td>Block Hash </td>
-                                    <td>{this.state.receipt.blockHash}</td>
-                                </tr>
-                                <tr>
-                                    <td>Block Number </td>
-                                    <td>{this.state.receipt.blockNumber}</td>
-                                </tr>
-                                <tr>
-                                    <td>From </td>
-                                    <td>{this.state.receipt.from}</td>
-                                </tr>
-                                <tr>
-                                    <td>To</td>
-                                    <td>{this.state.receipt.to}</td>
-                                </tr>
-                                <tr>
-                                    <td>Gas Used</td>
-                                    <td>{this.state.receipt.gasUsed}</td>
-                                </tr>
-                                <tr>
-                                    <td>Cumulative Gas Used</td>
-                                    <td>{this.state.receipt.cumulativeGasUsed}</td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>Transaction Hash </td>
+                                        <td>{this.state.receipt.transactionHash}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Block Hash </td>
+                                        <td>{this.state.receipt.blockHash}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Block Number </td>
+                                        <td>{this.state.receipt.blockNumber}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>From Account</td>
+                                        <td>{this.state.receipt.from}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>To Account</td>
+                                        <td>{this.state.receipt.to}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gas Used</td>
+                                        <td>{this.state.receipt.gasUsed}</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                          : null}
