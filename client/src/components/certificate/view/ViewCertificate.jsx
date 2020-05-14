@@ -11,8 +11,21 @@ class ViewCertificate extends Component {
 
         this.state = {
             certificateId: '',
+            web3: null,
+            contract: null,
+            account: null,
+            isFetched: false,
+            fname: '',
+            lname: '',
+            courseName: '',
+            issuingAuthority: '',
+            issueDate: '',
+            fullName: '',
         }
+
         this.loadBlockchain = this.loadBlockchain.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -35,8 +48,6 @@ class ViewCertificate extends Component {
             account: accounts[0],
             contract: instance
         });
-
-        console.log('contract instance :-', this.state.contract);
     }
 
     handleChange(event) {
@@ -48,11 +59,41 @@ class ViewCertificate extends Component {
     async handleSubmit(event) {
         event.preventDefault();
 
+        // alert(`Certificate ID : ${this.state.certificateId}`);
+
+        const getCertificateParams = {
+            account: this.state.account,
+            id: this.state.certificateId,
+        };
+
+        const contract = this.state.contract;
+
+        const certificateDetailsResponse = await contract.methods.getCertificate(
+            getCertificateParams.account,
+            getCertificateParams.id,
+        ).call();
+
+        if(certificateDetailsResponse !== undefined) {
+            this.setState({
+                isFetched: true,
+            });
+        }
+        this.setCertificateDetails(certificateDetailsResponse);
     }
+
+    setCertificateDetails(certificateDetails) {
+        this.setState({
+            fullName: certificateDetails[0],
+            issuingAuthority: certificateDetails[1],
+            courseName: certificateDetails[2],
+            issueDate: certificateDetails[3],
+        });
+    }
+
     render () {
         return (
             <div className="view-certificate">
-                <form>
+                <form className="form">
                     <div className="form-group row">
                         <label htmlFor="certificateId" className="col-sm-4 col-form-label">Enter Certificate ID: </label>
                         <div className="col-sm-6">
@@ -73,9 +114,37 @@ class ViewCertificate extends Component {
                             Get Certificate
                     </button>
                 </div>
+                <div className="certificate-details">
+                    {this.state.isFetched ?
+                        <div className="details">
+                            <h2 className="title">Certificate Details</h2>
+                            <dl className="dl-horizontal row">
+                                <dt className="col-4">Full Name: </dt>
+                                <dd className="col-8">{this.state.fullName}</dd>
+                                <dt className="col-4">Certificate ID: </dt>
+                                <dd className="col-8">{this.state.certificateId}</dd>
+                                <dt className="col-4">Course Name: </dt>
+                                <dd className="col-8">{this.state.courseName}</dd>
+                                <dt className="col-4">Issuing Authority: </dt>
+                                <dd className="col-8">{this.state.issuingAuthority}</dd>
+                                <dt className="col-4">Issue Date: </dt>
+                                <dd className="col-8">{this.state.issueDate}</dd>
+                            </dl>
+                        </div>
+                         : null}
+                </div>
             </div>
         );
     };
 };
 
 export default ViewCertificate;
+
+
+
+
+// <h2>Full Name: {this.state.fullName}</h2>
+//                             <h2>Certificate ID: {this.state.certificateId}</h2>
+//                             <h2>Course Name: {this.state.courseName}</h2>
+//                             <h2>Issuing Authority: {this.state.issuingAuthority}</h2>
+//                             <h2>Issue Date: {this.state.issueDate}</h2>

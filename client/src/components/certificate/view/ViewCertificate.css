@@ -1,4 +1,33 @@
 .view-certificate {
+
+}
+
+.form {
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.details {
     margin-left: 400px;
     margin-right: 400px;
+}
+
+.certificate-details {
+    margin-top: 50px;
+}
+
+.title {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+dt, dd {
+    display: block;
+    float: left;
+    margin-top: 20px;
+}
+
+dt {
+    clear: both;
 }
