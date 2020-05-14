@@ -27,6 +27,9 @@ class Navbar extends Component {
                     <li className="nav-item">
                         <Link to="/view-certificate" className="nav-link">View Certificate</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/get-transaction-details" className="nav-link">Get Transaction Details</Link>
+                    </li>
                 </ul>
             </div>
           </nav>

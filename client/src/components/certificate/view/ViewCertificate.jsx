@@ -59,8 +59,6 @@ class ViewCertificate extends Component {
     async handleSubmit(event) {
         event.preventDefault();
 
-        // alert(`Certificate ID : ${this.state.certificateId}`);
-
         const getCertificateParams = {
             account: this.state.account,
             id: this.state.certificateId,
@@ -139,12 +137,3 @@ class ViewCertificate extends Component {
 };
 
 export default ViewCertificate;
-
-
-
-
-// <h2>Full Name: {this.state.fullName}</h2>
-//                             <h2>Certificate ID: {this.state.certificateId}</h2>
-//                             <h2>Course Name: {this.state.courseName}</h2>
-//                             <h2>Issuing Authority: {this.state.issuingAuthority}</h2>
-//                             <h2>Issue Date: {this.state.issueDate}</h2>
