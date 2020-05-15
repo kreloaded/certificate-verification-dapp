@@ -6,6 +6,7 @@ import Home from './components/other/Home';
 import AddCertificate from './components/certificate/add/AddCertificate';
 import ViewCertificate from './components/certificate/view/ViewCertificate';
 import GetTransactionDetails from './components/certificate/transaction/GetTransactionDetails';
+import Footer from './components/other/footer/footer';
 
 class Routes extends Component {
   render () {
@@ -16,6 +17,7 @@ class Routes extends Component {
         <Route path="/add-certificate" component={ AddCertificate } />
         <Route path="/view-certificate" component={ ViewCertificate } />
         <Route path="/get-transaction-details" component={ GetTransactionDetails } />
+        <Footer />
       </BrowserRouter>
     );
   };

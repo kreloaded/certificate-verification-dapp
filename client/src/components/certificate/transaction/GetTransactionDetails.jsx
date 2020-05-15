@@ -11,6 +11,8 @@ class GetTransactionDetails extends Component {
 
         this.state = {
             transactionHash: '',
+            transactionDetails: null,
+            isFetched: false,
         }
 
         this.loadBlockchain = this.loadBlockchain.bind(this);
@@ -56,8 +58,26 @@ class GetTransactionDetails extends Component {
         this.setTransactionDetails(transaction);
     }
 
-    setTransactionDetails() {
+    setTransactionDetails(params) {
         // TODO: set transaction details to state variables
+        const transactionDetails = {
+            blockNumber: params.blockNumber,
+            to: params.to,
+            from: params.from,
+            gas: params.gas,
+            gasPrice: params.gasPrice,
+            hash: params.hash,
+            nonce: params.nonce,
+            r: params.r,
+            s: params.s,
+            v: params.v,
+            transactionIndex: params.transactionIndex
+        }
+
+        this.setState({
+            transactionDetails: transactionDetails,
+            isFetched: true,
+        })
     }
 
     render () {
@@ -83,6 +103,65 @@ class GetTransactionDetails extends Component {
                         onClick={this.handleSubmit}>
                             Get Transaction Details
                     </button>
+                </div>
+                <div>
+                    {this.state.isFetched ?
+                        <div className="transaction-details">
+                            <h1 className="table-title">Transaction Details</h1>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Transaction Hash </td>
+                                        <td>{this.state.transactionHash}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Block Number </td>
+                                        <td>{this.state.transactionDetails.blockNumber}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>From Account</td>
+                                        <td>{this.state.transactionDetails.from}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>To Account</td>
+                                        <td>{this.state.transactionDetails.to}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gas Used</td>
+                                        <td>{this.state.transactionDetails.gas}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gas Price</td>
+                                        <td>{this.state.transactionDetails.gasPrice}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hash</td>
+                                        <td>{this.state.transactionDetails.hash}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nonce</td>
+                                        <td>{this.state.transactionDetails.nonce}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>R</td>
+                                        <td>{this.state.transactionDetails.r}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>S</td>
+                                        <td>{this.state.transactionDetails.s}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>V</td>
+                                        <td>{this.state.transactionDetails.v}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transaction Index</td>
+                                        <td>{this.state.transactionDetails.transactionIndex}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                         : null}
                 </div>
             </div>
         )
