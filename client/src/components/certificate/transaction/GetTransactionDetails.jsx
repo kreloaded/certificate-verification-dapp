@@ -16,6 +16,7 @@ class GetTransactionDetails extends Component {
         this.loadBlockchain = this.loadBlockchain.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.setTransactionDetails = this.setTransactionDetails.bind(this);
     }
 
     componentDidMount() {
@@ -52,6 +53,11 @@ class GetTransactionDetails extends Component {
 
         const transaction = await web3.eth.getTransaction(this.state.transactionHash);
         console.log('Transaction Details :-', transaction);
+        this.setTransactionDetails(transaction);
+    }
+
+    setTransactionDetails() {
+        // TODO: set transaction details to state variables
     }
 
     render () {
