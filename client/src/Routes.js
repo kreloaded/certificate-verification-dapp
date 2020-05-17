@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Navbar from './components/other/Navbar';
-import Home from './components/other/Home';
+import Home from './components/other/Home/Home';
 import AddCertificate from './components/certificate/add/AddCertificate';
 import ViewCertificate from './components/certificate/view/ViewCertificate';
 import GetTransactionDetails from './components/certificate/transaction/GetTransactionDetails';
