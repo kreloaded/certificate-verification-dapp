@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import web3 from '../../../getWeb3';
 import CertificateContract from '../../../contracts/Certificate.json';
+import FailedBlockchain from '../../other/error/Failed';
 
 import './AddCertificate.css';
 
@@ -31,23 +32,40 @@ class AddCertificate extends Component {
     }
 
     async loadBlockchain() {
-        const accounts = await web3.eth.getAccounts();
-        console.log('accounts :-', accounts);
+        console.log('web3 provider ::::', await web3.givenProvider);
+        const givenProvider = await web3.givenProvider;
 
-        const networkId = await web3.eth.net.getId();
-        const deployedNetwork = CertificateContract.networks[networkId];
-        const instance = new web3.eth.Contract(
-            CertificateContract.abi,
-            deployedNetwork && deployedNetwork.address,
-        );
+        if(givenProvider !== null) {
+            this.setState({
+                isConnected: true,
+            });
+        }
 
-        this.setState({
-            web3,
-            account: accounts[0],
-            contract: instance
-        });
+        if(this.state.isConnected) {
+            const accounts = await web3.eth.getAccounts();
 
-        console.log('contract instance :-', this.state.contract);
+            if(accounts === undefined) {
+                this.setState({
+                    isFailed: true
+                });
+            }
+            console.log('accounts :-', accounts);
+
+            const networkId = await web3.eth.net.getId();
+            const deployedNetwork = CertificateContract.networks[networkId];
+            const instance = new web3.eth.Contract(
+                CertificateContract.abi,
+                deployedNetwork && deployedNetwork.address,
+            );
+
+            this.setState({
+                web3,
+                account: accounts[0],
+                contract: instance
+            });
+
+            console.log('contract instance :-', this.state.contract);
+        }
     }
 
     handleChange(event) {
@@ -58,7 +76,6 @@ class AddCertificate extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        // alert(`Submit clicked with ${JSON.stringify(this.state)}`);
 
         const contract = this.state.contract;
 
@@ -103,125 +120,131 @@ class AddCertificate extends Component {
     }
 
     render () {
-        return (
-            <div>
-                <div className="form-title">
-                    <h1>Certificate Details</h1>
-                </div>
-                <form className="form">
-                    <div className="form-group row">
-                        <label htmlFor="fname" className="col-sm-4 col-form-label">Enter First Name: </label>
-                        <div className="col-sm-6">
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="fname"
-                                value={this.state.fname}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="lname" className="col-sm-4 col-form-label">Enter Last Name: </label>
-                        <div className="col-sm-6">
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="lname"
-                                value={this.state.lname}
-                                onChange={this.handleChange} />
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="certificateId" className="col-sm-4 col-form-label">Certificate ID: </label>
-                        <div className="col-sm-6">
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="certificateId"
-                                value={this.state.certificateId}
-                                onChange={this.handleChange}
-                                placeholder="e.g. 12ac-df4g-gh7t"
-                            />
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="courseName" className="col-sm-4 col-form-label">Course Name: </label>
-                        <div className="col-sm-6">
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="courseName"
-                                value={this.state.courseName}
-                                onChange={this.handleChange}
-                                placeholder="e.g. Computer Security"
-                            />
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="issuingAuthority" className="col-sm-4 col-form-label">Issuing Authority: </label>
-                        <div className="col-sm-6">
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="issuingAuthority"
-                                value={this.state.issuingAuthority}
-                                onChange={this.handleChange}
-                                placeholder="e.g. Offensive Security"
-                            />
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="issueDate" className="col-sm-4 col-form-label">Issue Date: </label>
-                        <div className="col-sm-6">
-                            <input
-                                type="date"
-                                className="form-control"
-                                name="issueDate"
-                                value={this.state.issueDate}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </div><br />
-                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Submit Certificate</button>
-                </form>
+        if(!this.state.isConnected) {
+            return (
+                <FailedBlockchain />
+            );
+        } else {
+            return (
                 <div>
-                    {this.state.isReceiptGenerated ?
-                        <div className="receipt">
-                            <h1 className="table-title">Transaction Receipt</h1>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Transaction Hash </td>
-                                        <td>{this.state.receipt.transactionHash}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Block Hash </td>
-                                        <td>{this.state.receipt.blockHash}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Block Number </td>
-                                        <td>{this.state.receipt.blockNumber}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>From Account</td>
-                                        <td>{this.state.receipt.from}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>To Account</td>
-                                        <td>{this.state.receipt.to}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gas Used</td>
-                                        <td>{this.state.receipt.gasUsed}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div className="form-title">
+                        <h1>Certificate Details</h1>
+                    </div>
+                    <form className="form">
+                        <div className="form-group row">
+                            <label htmlFor="fname" className="col-sm-4 col-form-label">Enter First Name: </label>
+                            <div className="col-sm-6">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="fname"
+                                    value={this.state.fname}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
                         </div>
-                         : null}
+                        <div className="form-group row">
+                            <label htmlFor="lname" className="col-sm-4 col-form-label">Enter Last Name: </label>
+                            <div className="col-sm-6">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="lname"
+                                    value={this.state.lname}
+                                    onChange={this.handleChange} />
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="certificateId" className="col-sm-4 col-form-label">Certificate ID: </label>
+                            <div className="col-sm-6">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="certificateId"
+                                    value={this.state.certificateId}
+                                    onChange={this.handleChange}
+                                    placeholder="e.g. 12ac-df4g-gh7t"
+                                />
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="courseName" className="col-sm-4 col-form-label">Course Name: </label>
+                            <div className="col-sm-6">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="courseName"
+                                    value={this.state.courseName}
+                                    onChange={this.handleChange}
+                                    placeholder="e.g. Computer Security"
+                                />
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="issuingAuthority" className="col-sm-4 col-form-label">Issuing Authority: </label>
+                            <div className="col-sm-6">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="issuingAuthority"
+                                    value={this.state.issuingAuthority}
+                                    onChange={this.handleChange}
+                                    placeholder="e.g. Offensive Security"
+                                />
+                            </div>
+                        </div>
+                        <div className="form-group row">
+                            <label htmlFor="issueDate" className="col-sm-4 col-form-label">Issue Date: </label>
+                            <div className="col-sm-6">
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    name="issueDate"
+                                    value={this.state.issueDate}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+                        </div><br />
+                        <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Submit Certificate</button>
+                    </form>
+                    <div>
+                        {this.state.isReceiptGenerated ?
+                            <div className="receipt">
+                                <h1 className="table-title">Transaction Receipt</h1>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Transaction Hash </td>
+                                            <td>{this.state.receipt.transactionHash}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Block Hash </td>
+                                            <td>{this.state.receipt.blockHash}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Block Number </td>
+                                            <td>{this.state.receipt.blockNumber}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>From Account</td>
+                                            <td>{this.state.receipt.from}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>To Account</td>
+                                            <td>{this.state.receipt.to}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gas Used</td>
+                                            <td>{this.state.receipt.gasUsed}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                             : null}
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     };
 };
 
