@@ -83,19 +83,21 @@ class GetTransactionDetails extends Component {
     render () {
         return (
             <div className="get-transaction-details">
-                <form className="form">
-                    <div className="form-group row">
-                        <label htmlFor="transactionHash" className="col-sm-4 col-form-label">Enter Transaction Hash: </label>
-                        <div className="col-sm-6">
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="transactionHash"
-                                value={this.state.transactionHash}
-                                onChange={this.handleChange} />
+                <div className="form-div">
+                    <form className="form">
+                        <div className="form-group row">
+                            <label htmlFor="transactionHash" className="col-sm-4 col-form-label">Enter Transaction Hash: </label>
+                            <div className="col-sm-6">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    name="transactionHash"
+                                    value={this.state.transactionHash}
+                                    onChange={this.handleChange} />
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
                 <div>
                     <button
                         type="submit"

@@ -6,7 +6,7 @@ import Home from './components/other/Home';
 import AddCertificate from './components/certificate/add/AddCertificate';
 import ViewCertificate from './components/certificate/view/ViewCertificate';
 import GetTransactionDetails from './components/certificate/transaction/GetTransactionDetails';
-import Footer from './components/other/footer/footer';
+import Footer from './components/other/footer/Footer';
 
 class Routes extends Component {
   render () {
