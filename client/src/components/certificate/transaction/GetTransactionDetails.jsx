@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import web3 from '../../../getWeb3';
 import CertificateContract from '../../../contracts/Certificate.json';
+import FailedBlockchain from '../../other/error/Failed';
 
 import './GetTransactionDetails.css';
 
@@ -12,6 +13,7 @@ class GetTransactionDetails extends Component {
         this.state = {
             transactionHash: '',
             transactionDetails: null,
+            isConnected: false,
             isFetched: false,
         }
 
@@ -26,21 +28,31 @@ class GetTransactionDetails extends Component {
     }
 
     async loadBlockchain() {
-        const accounts = await web3.eth.getAccounts();
-        console.log('accounts :-', accounts);
+        const givenProvider = await web3.givenProvider;
 
-        const networkId = await web3.eth.net.getId();
-        const deployedNetwork = CertificateContract.networks[networkId];
-        const instance = new web3.eth.Contract(
-            CertificateContract.abi,
-            deployedNetwork && deployedNetwork.address,
-        );
+        if(givenProvider !== null) {
+            this.setState({
+                isConnected: true,
+            });
+        }
 
-        this.setState({
-            web3,
-            account: accounts[0],
-            contract: instance
-        });
+        if(this.state.isConnected) {
+            const accounts = await web3.eth.getAccounts();
+            console.log('accounts :-', accounts);
+
+            const networkId = await web3.eth.net.getId();
+            const deployedNetwork = CertificateContract.networks[networkId];
+            const instance = new web3.eth.Contract(
+                CertificateContract.abi,
+                deployedNetwork && deployedNetwork.address,
+            );
+
+            this.setState({
+                web3,
+                account: accounts[0],
+                contract: instance
+            });
+        }
     }
 
     handleChange(event) {
@@ -81,92 +93,97 @@ class GetTransactionDetails extends Component {
     }
 
     render () {
-        return (
-            <div className="get-transaction-details">
-                <div className="form-div">
-                    <form className="form">
-                        <div className="form-group row">
-                            <label htmlFor="transactionHash" className="col-sm-4 col-form-label">Enter Transaction Hash: </label>
-                            <div className="col-sm-6">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    name="transactionHash"
-                                    value={this.state.transactionHash}
-                                    onChange={this.handleChange} />
+        if(!this.state.isConnected) {
+            return <FailedBlockchain />
+        }
+        else {
+            return (
+                <div className="get-transaction-details">
+                    <div className="form-div">
+                        <form className="form">
+                            <div className="form-group row">
+                                <label htmlFor="transactionHash" className="col-sm-4 col-form-label">Enter Transaction Hash: </label>
+                                <div className="col-sm-6">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        name="transactionHash"
+                                        value={this.state.transactionHash}
+                                        onChange={this.handleChange} />
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            className="btn btn-primary"
+                            onClick={this.handleSubmit}>
+                                Get Transaction Details
+                        </button>
+                    </div>
+                    <div>
+                        {this.state.isFetched ?
+                            <div className="transaction-details">
+                                <h1 className="table-title">Transaction Details</h1>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Transaction Hash </td>
+                                            <td>{this.state.transactionHash}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Block Number </td>
+                                            <td>{this.state.transactionDetails.blockNumber}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>From Account</td>
+                                            <td>{this.state.transactionDetails.from}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>To Account</td>
+                                            <td>{this.state.transactionDetails.to}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gas Used</td>
+                                            <td>{this.state.transactionDetails.gas}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gas Price</td>
+                                            <td>{this.state.transactionDetails.gasPrice}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hash</td>
+                                            <td>{this.state.transactionDetails.hash}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nonce</td>
+                                            <td>{this.state.transactionDetails.nonce}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>R</td>
+                                            <td>{this.state.transactionDetails.r}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>S</td>
+                                            <td>{this.state.transactionDetails.s}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>V</td>
+                                            <td>{this.state.transactionDetails.v}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Transaction Index</td>
+                                            <td>{this.state.transactionDetails.transactionIndex}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                             : null}
+                    </div>
                 </div>
-                <div>
-                    <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={this.handleSubmit}>
-                            Get Transaction Details
-                    </button>
-                </div>
-                <div>
-                    {this.state.isFetched ?
-                        <div className="transaction-details">
-                            <h1 className="table-title">Transaction Details</h1>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Transaction Hash </td>
-                                        <td>{this.state.transactionHash}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Block Number </td>
-                                        <td>{this.state.transactionDetails.blockNumber}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>From Account</td>
-                                        <td>{this.state.transactionDetails.from}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>To Account</td>
-                                        <td>{this.state.transactionDetails.to}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gas Used</td>
-                                        <td>{this.state.transactionDetails.gas}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gas Price</td>
-                                        <td>{this.state.transactionDetails.gasPrice}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hash</td>
-                                        <td>{this.state.transactionDetails.hash}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nonce</td>
-                                        <td>{this.state.transactionDetails.nonce}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>R</td>
-                                        <td>{this.state.transactionDetails.r}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>S</td>
-                                        <td>{this.state.transactionDetails.s}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>V</td>
-                                        <td>{this.state.transactionDetails.v}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Transaction Index</td>
-                                        <td>{this.state.transactionDetails.transactionIndex}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                         : null}
-                </div>
-            </div>
-        )
+            );
+        }
     }
 }
 
