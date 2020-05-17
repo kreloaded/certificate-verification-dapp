@@ -109,6 +109,12 @@ class ViewCertificate extends Component {
         } else {
             return (
                 <div className="view-certificate">
+                    <div className="account-address">
+                        <dl className="dl-horizontal row">
+                            <dt className="col-5">Ethereum Account Address: </dt>
+                            <dd className="col-7">{this.state.account}</dd>
+                        </dl>
+                    </div>
                     <form className="form">
                         <div className="form-group row">
                             <label htmlFor="certificateId" className="col-sm-4 col-form-label">Enter Certificate ID: </label>
@@ -146,6 +152,7 @@ class ViewCertificate extends Component {
                                     <dt className="col-4">Issue Date: </dt>
                                     <dd className="col-8">{this.state.issueDate}</dd>
                                 </dl>
+                                <div className="extra-spacing-div"></div>
                             </div>
                              : null}
                     </div>

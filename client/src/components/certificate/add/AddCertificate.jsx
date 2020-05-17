@@ -127,6 +127,12 @@ class AddCertificate extends Component {
         } else {
             return (
                 <div>
+                    <div className="account-address">
+                        <dl className="dl-horizontal row">
+                            <dt className="col-5">Ethereum Account Address: </dt>
+                            <dd className="col-7">{this.state.account}</dd>
+                        </dl>
+                    </div>
                     <div className="form-title">
                         <h1>Certificate Details</h1>
                     </div>

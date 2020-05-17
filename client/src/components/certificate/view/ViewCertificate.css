@@ -4,17 +4,22 @@
 
 .form {
     margin-top: 50px;
-    margin-left: 200px;
+    margin-left: 300px;
     margin-right: 200px;
 }
 
 .details {
+    padding-bottom: 50px;
     margin-left: 400px;
     margin-right: 400px;
 }
 
 .certificate-details {
     margin-top: 50px;
+}
+
+button {
+    margin-top: 20px;
 }
 
 .title {
@@ -30,4 +35,8 @@ dt, dd {
 
 dt {
     clear: both;
+}
+
+.extra-spacing-div {
+    margin-top: 50px;
 }

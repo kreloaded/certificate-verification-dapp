@@ -99,6 +99,12 @@ class GetTransactionDetails extends Component {
         else {
             return (
                 <div className="get-transaction-details">
+                    <div className="account-address">
+                        <dl className="dl-horizontal row">
+                            <dt className="col-5">Ethereum Account Address: </dt>
+                            <dd className="col-7">{this.state.account}</dd>
+                        </dl>
+                    </div>
                     <div className="form-div">
                         <form className="form">
                             <div className="form-group row">

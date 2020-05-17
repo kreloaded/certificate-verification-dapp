@@ -1,13 +1,18 @@
 .form {
     margin-top: 50px;
     margin-left: 300px;
-    margin-right: 200px;
+    margin-right: 300px;
     align-content: center;
     /* align-items: center; */
 }
 
 .form-title{
-    margin-top: 50px;
+    margin-top: 20px;
+}
+
+.account-address {
+    margin-left: 400px;
+    margin-right: 400px;
 }
 
 .receipt {
