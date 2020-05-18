@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import web3 from '../../../getWeb3';
 import CertificateContract from '../../../contracts/Certificate.json';
-import FailedBlockchain from '../../other/error/Failed';
+import FailedBlockchain from '../../other/error/failed/Failed';
 
 import './GetTransactionDetails.css';
 
