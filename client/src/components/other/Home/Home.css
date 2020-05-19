@@ -1,15 +1,58 @@
+@font-face {
+    font-family: Allerta;
+    src: url('../../../assets/fonts/Allerta/Allerta-Regular.ttf') format("opentype");
+}
+
 .home {
     margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+}
+
+.head-title {
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 .network-image {
     margin-top: 50px;
     background-image: url('../../../assets/images/1267597.jpg');
-    height: 500px;
-    /* margin-left: 20px;
-    margin-right: 20px; */
+    height: 300px;
+    margin-left: 40px;
+    margin-right: 40px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+h1 {
+    font-family: 'Allerta'
+}
+.sections {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-right: 400px;
+    padding-left: 400px;
+}
+
+.heading-section {
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
+.section-1 {
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
+.section-2 {
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
+.section-3 {
+    margin-top: 150px;
+    margin-bottom: 150px;
 }

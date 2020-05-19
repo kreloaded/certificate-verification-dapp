@@ -6,63 +6,47 @@ class Home extends Component {
     render () {
         return (
             <div className="home">
-                <h1>Welcome to the world of Blockchains</h1>
+                <h1 className="head-title">
+                    Prizma : Ethereum Based Certificate Verfication Dapp
+                </h1>
                 <div className="network-image" />
-                <div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                        in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus.
-                        Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
-                        nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac
-                        tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper,
-                        ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas
-                        fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem,
-                        aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet,
-                        felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc.
-                        Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi.
-                        Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.
-                    </p>
-                </div>
-
-                <div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                        in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus.
-                        Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
-                        nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac
-                        tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper,
-                        ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas
-                        fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem,
-                        aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet,
-                        felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc.
-                        Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi.
-                        Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.
-                    </p>
-                </div>
-
-                <div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-                        in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus.
-                        Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit,
-                        nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac
-                        tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper,
-                        ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas
-                        fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem,
-                        aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet,
-                        felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc.
-                        Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi.
-                        Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.
-                    </p>
+                <div className="sections">
+                    <h1>Welcome to the world of Blockchains</h1>
+                    <section className="heading-section">
+                        <div>
+                            <h1>Key Features of the Technology</h1>
+                        </div>
+                    </section>
+                    <section className="section-1">
+                        <div>
+                            <h1>Decentralized</h1><br />
+                            <p>
+                                The network is decentralized meaning it doesn’t have any governing authority or a
+                                single person looking after the framework. Rather a group of nodes maintains the
+                                network making it decentralized.
+                            </p>
+                        </div>
+                    </section>
+                    <section className="section-2">
+                        <div>
+                            <h1>Cannot be Corrupted</h1><br />
+                            <p>
+                                The basic philosophy of the blockchain technology is that, once the transaction
+                                blocks get added on the ledger, no one can just go back and change it. Thus, any
+                                user on the network won’t be able to edit, delete or update it.
+                            </p>
+                        </div>
+                    </section>
+                    <section className="section-3">
+                        <div>
+                            <h1>Enhanced Security</h1><br />
+                            <p>
+                                Cryptography lays another layer of protection for users.
+                                Cryptography is a rather complex mathematical algorithm
+                                that acts as a firewall for attacks.
+                            </p>
+                        </div>
+                    </section>
                 </div>
             </div>
 
