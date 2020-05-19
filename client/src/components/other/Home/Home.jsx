@@ -7,11 +7,26 @@ class Home extends Component {
         return (
             <div className="home">
                 <h1 className="head-title">
-                    Prizma : Ethereum Based Certificate Verfication Dapp
+                    Prizma : A Blockchain Based Certificate Verfication Dapp
                 </h1>
-                <div className="network-image" />
+                <div className="introduction">
+                    <dl className="dl-horizontal row">
+                        <dt className="ethereum-image col-3"/>
+                        <dd className="col-8">
+                            <div className="introduction-text">
+                                <p>
+                                    Prizma is completely based on Ethereum network for transactions.
+                                    Ethereum is a decentralized blockchain platform for
+                                    "<b>building unstoppable applications</b>", while Ether is the
+                                    cryptocurrency used on this platform. Ethereum can be used for virtually
+                                    any kind of transaction or agreement.
+                                </p>
+                            </div>
+
+                        </dd>
+                    </dl>
+                </div>
                 <div className="sections">
-                    <h1>Welcome to the world of Blockchains</h1>
                     <section className="heading-section">
                         <div>
                             <h1>Key Features of the Technology</h1>

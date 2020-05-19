@@ -3,10 +3,15 @@
     src: url('../../../assets/fonts/Allerta/Allerta-Regular.ttf') format("opentype");
 }
 
+@font-face {
+    font-family: Aileron-Regular;
+    src: url('../../../assets/fonts/aileron_0102/Aileron-Regular.otf') format("opentype");
+}
+
 .home {
     margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-bottom: 50px;
 }
 
@@ -15,21 +20,36 @@
     margin-bottom: 100px;
 }
 
-.network-image {
-    margin-top: 50px;
-    background-image: url('../../../assets/images/1267597.jpg');
+.introduction {
+    margin-left: 200px;
+    margin-right: 100px;
+}
+
+.ethereum-image {
+    background-image: url('../../../assets/images/ethereum.jpg');
     height: 300px;
-    margin-left: 40px;
-    margin-right: 40px;
-    background-attachment: fixed;
-    background-position: center;
+    width: 300px;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.introduction-text {
+    font-weight: 500;
+    padding-top: 70px;
+    padding-left: 80px;
+    padding-right: 50px;
+    text-align: left;
 }
 
 h1 {
     font-family: 'Allerta'
 }
+
+p {
+    font-family: 'Aileron-Regular';
+    font-size: 20px;
+}
+
 .sections {
     margin-top: 50px;
     margin-bottom: 50px;
