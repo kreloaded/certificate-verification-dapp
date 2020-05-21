@@ -15,8 +15,8 @@ class Home extends Component {
                         <dd className="col-8">
                             <div className="introduction-text">
                                 <p>
-                                    Prizma is completely based on Ethereum network for transactions.
-                                    Ethereum is a decentralized blockchain platform for
+                                    Prizma is completely based on Ethereum's Ropsten test network for
+                                    transactions. Ethereum is a decentralized blockchain platform for
                                     "<b>building unstoppable applications</b>", while Ether is the
                                     cryptocurrency used on this platform. Ethereum can be used for virtually
                                     any kind of transaction or agreement.
