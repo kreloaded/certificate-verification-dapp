@@ -7,7 +7,6 @@ import AddCertificate from './components/certificate/add/AddCertificate';
 import ViewCertificate from './components/certificate/view/ViewCertificate';
 import GetTransactionDetails from './components/certificate/transaction/GetTransactionDetails';
 import Page404 from './components/other/error/page-not-found/Page404';
-import Footer from './components/other/footer/Footer';
 
 class Routes extends Component {
   render () {
@@ -21,7 +20,6 @@ class Routes extends Component {
           <Route path="/get-transaction-details" component={ GetTransactionDetails } />
           <Route component={ Page404 } />
         </Switch>
-        <Footer />
       </BrowserRouter>
     );
   };

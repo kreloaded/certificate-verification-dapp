@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Footer from '../footer/Footer'
 import './Home.css';
 
 class Home extends Component {
@@ -63,8 +64,8 @@ class Home extends Component {
                         </div>
                     </section>
                 </div>
+                <Footer />
             </div>
-
         );
     };
 };
