@@ -1,5 +1,5 @@
 {
-  "contractName": "Certificate",
+  "": "Certificate",
   "abi": [
     {
       "constant": true,

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import web3 from '../../../getWeb3';
-import CertificateContract from '../../../contracts/Certificate.json';
+// import CertificateContract from '../../../contracts/Certificate.json';
 import FailedBlockchain from '../../other/error/failed/Failed';
+import CertificateContract from '../../../contracts/Contract.json';
 
 import './AddCertificate.css';
 
@@ -32,8 +33,8 @@ class AddCertificate extends Component {
     }
 
     async loadBlockchain() {
-        console.log('web3 provider ::::', await web3.givenProvider);
         const givenProvider = await web3.givenProvider;
+        console.log('web3  ::::', web3);
 
         if(givenProvider !== null) {
             this.setState({
@@ -49,13 +50,19 @@ class AddCertificate extends Component {
                     isFailed: true
                 });
             }
-            console.log('accounts :-', accounts);
+            console.log('metamask account :-', accounts[0]);
+            await web3.eth.accounts.wallet.add(accounts[0]);
 
-            const networkId = await web3.eth.net.getId();
-            const deployedNetwork = CertificateContract.networks[networkId];
+            // const networkId = await web3.eth.net.getId();
+            // const deployedNetwork = CertificateContract.networks[networkId];
+            // const instance = new web3.eth.Contract(
+            //     CertificateContract.abi,
+            //     deployedNetwork && deployedNetwork.address,
+            // );
+
             const instance = new web3.eth.Contract(
                 CertificateContract.abi,
-                deployedNetwork && deployedNetwork.address,
+                CertificateContract.address,
             );
 
             this.setState({
@@ -63,8 +70,6 @@ class AddCertificate extends Component {
                 account: accounts[0],
                 contract: instance
             });
-
-            console.log('contract instance :-', this.state.contract);
         }
     }
 

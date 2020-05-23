@@ -1,0 +1,75 @@
+{
+  "ContractName": "Certificate",
+  "address": "0x10cbD06EFf86C517fEa311f6aE956C318165D6F9",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_userName",
+          "type": "string"
+        },
+        {
+          "name": "_id",
+          "type": "string"
+        },
+        {
+          "name": "_courseName",
+          "type": "string"
+        },
+        {
+          "name": "_issuingAuthority",
+          "type": "string"
+        },
+        {
+          "name": "_issueDate",
+          "type": "uint256"
+        },
+        {
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "addCertificate",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "name": "_id",
+          "type": "string"
+        }
+      ],
+      "name": "getCertificate",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+}

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 import web3 from '../../../getWeb3';
-import CertificateContract from '../../../contracts/Certificate.json';
+// import CertificateContract from '../../../contracts/Certificate.json';
 import FailedBlockchain from '../../other/error/failed/Failed';
+import CertificateContract from '../../../contracts/Contract.json';
 
 import './GetTransactionDetails.css';
 
+const etherscanUrl = 'https://rinkeby.etherscan.io/tx';
 class GetTransactionDetails extends Component {
     constructor(props) {
         super(props);
@@ -40,11 +42,16 @@ class GetTransactionDetails extends Component {
             const accounts = await web3.eth.getAccounts();
             console.log('accounts :-', accounts);
 
-            const networkId = await web3.eth.net.getId();
-            const deployedNetwork = CertificateContract.networks[networkId];
+            // const networkId = await web3.eth.net.getId();
+            // const deployedNetwork = CertificateContract.networks[networkId];
+            // const instance = new web3.eth.Contract(
+            //     CertificateContract.abi,
+            //     deployedNetwork && deployedNetwork.address,
+            // );
+
             const instance = new web3.eth.Contract(
                 CertificateContract.abi,
-                deployedNetwork && deployedNetwork.address,
+                CertificateContract.address,
             );
 
             this.setState({
@@ -71,7 +78,6 @@ class GetTransactionDetails extends Component {
     }
 
     setTransactionDetails(params) {
-        // TODO: set transaction details to state variables
         const transactionDetails = {
             blockNumber: params.blockNumber,
             to: params.to,
@@ -127,6 +133,16 @@ class GetTransactionDetails extends Component {
                             onClick={this.handleSubmit}>
                                 Get Transaction Details
                         </button>
+                    </div>
+                    <div className="view-on-etherscan">
+                        <a
+                            class="btn btn-primary"
+                            href={`${etherscanUrl}/${this.state.transactionHash}`}
+                            target="_blank"
+                            role="button"
+                        >
+                            View on Etherscan
+                        </a>
                     </div>
                     <div>
                         {this.state.isFetched ?

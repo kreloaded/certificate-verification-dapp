@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import web3 from '../../../getWeb3';
-import CertificateContract from '../../../contracts/Certificate.json';
+// import CertificateContract from '../../../contracts/Certificate.json';
 import FailedBlockchain from '../../other/error/failed/Failed';
+
+import CertificateContract from '../../../contracts/Contract.json';
 
 import './ViewCertificate.css';
 
@@ -48,11 +50,16 @@ class ViewCertificate extends Component {
             const accounts = await web3.eth.getAccounts();
             console.log('accounts :-', accounts);
 
-            const networkId = await web3.eth.net.getId();
-            const deployedNetwork = CertificateContract.networks[networkId];
+            // const networkId = await web3.eth.net.getId();
+            // const deployedNetwork = CertificateContract.networks[networkId];
+            // const instance = new web3.eth.Contract(
+            //     CertificateContract.abi,
+            //     deployedNetwork && deployedNetwork.address,
+            // );
+
             const instance = new web3.eth.Contract(
                 CertificateContract.abi,
-                deployedNetwork && deployedNetwork.address,
+                CertificateContract.address,
             );
 
             this.setState({
