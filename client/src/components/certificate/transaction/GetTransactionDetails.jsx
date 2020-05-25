@@ -136,7 +136,7 @@ class GetTransactionDetails extends Component {
                     </div>
                     <div className="view-on-etherscan">
                         <a
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             href={`${etherscanUrl}/${this.state.transactionHash}`}
                             target="_blank"
                             role="button"
