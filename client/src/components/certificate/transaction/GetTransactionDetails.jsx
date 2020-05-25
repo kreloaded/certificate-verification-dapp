@@ -100,7 +100,7 @@ class GetTransactionDetails extends Component {
 
     render () {
         if(!this.state.isConnected) {
-            return <FailedBlockchain />
+            return <FailedBlockchain error="Please check your Metamask !" />
         }
         else {
             return (

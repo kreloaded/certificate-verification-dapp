@@ -127,7 +127,7 @@ class AddCertificate extends Component {
     render () {
         if(!this.state.isConnected) {
             return (
-                <FailedBlockchain />
+                <FailedBlockchain error="Please check your Metamask !"/>
             );
         } else {
             return (

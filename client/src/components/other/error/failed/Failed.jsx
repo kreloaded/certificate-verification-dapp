@@ -3,12 +3,17 @@ import React, { Component } from 'react';
 import './Failed.css';
 
 class Failed extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            errorMessage: props.error,
+        }
+    }
     render () {
         return (
             <div className="failed">
-                <h2>Loading Blockchain Failed ! </h2>
-                <h3>Currently only connection through metamask is supported.</h3>
-                <h3>Please check your metamask is active and connected ! </h3>
+                <h2>{this.state.errorMessage}</h2>
             </div>
         );
     };
