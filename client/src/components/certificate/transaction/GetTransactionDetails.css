@@ -7,20 +7,6 @@
     margin-bottom: 20px;
 }
 
-/* .empty-space-before-footer {
-    margin-bottom: initial;
-} */
-
-html {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-}
-
 .view-on-etherscan {
     margin-top: 50px;
 }
