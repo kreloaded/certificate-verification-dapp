@@ -100,11 +100,13 @@ class ViewCertificate extends Component {
     }
 
     setCertificateDetails(certificateDetails) {
+        const date = new Date(Number(certificateDetails[3])).toDateString()
+
         this.setState({
             fullName: certificateDetails[0],
             issuingAuthority: certificateDetails[1],
             courseName: certificateDetails[2],
-            issueDate: certificateDetails[3],
+            issueDate: date,
         });
     }
 
