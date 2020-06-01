@@ -4,8 +4,11 @@ import web3 from '../../../getWeb3';
 // import CertificateContract from '../../../contracts/Certificate.json';
 import FailedBlockchain from '../../other/error/failed/Failed';
 import CertificateContract from '../../../contracts/Contract.json';
+import Loader from '../../other/loader/Loader';
 
 import './AddCertificate.css';
+
+const GAS_LIMIT = 3000000;
 
 class AddCertificate extends Component {
     constructor(props) {
@@ -22,6 +25,7 @@ class AddCertificate extends Component {
             account: '',
             receipt: null,
             isReceiptGenerated: false,
+            isLoading: false,
         }
         this.loadBlockchain = this.loadBlockchain.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -82,6 +86,10 @@ class AddCertificate extends Component {
     async handleSubmit(event) {
         event.preventDefault();
 
+        this.setState({
+            isLoading: true,
+        });
+
         const contract = this.state.contract;
 
         const addCertificateParams = {
@@ -103,7 +111,7 @@ class AddCertificate extends Component {
             addCertificateParams.accountAddress
         ).send({
             from: this.state.account,
-            gas: 3000000
+            gas: GAS_LIMIT
          });
 
         console.log('tx receipt :-', JSON.stringify(txReceipt));
@@ -122,6 +130,10 @@ class AddCertificate extends Component {
             isReceiptGenerated: true,
             receipt: receiptData
         });
+
+        this.setState({
+            isLoading: false,
+        });
     }
 
     render () {
@@ -129,7 +141,15 @@ class AddCertificate extends Component {
             return (
                 <FailedBlockchain error="Please check your Metamask !"/>
             );
-        } else {
+        }
+
+        if(this.state.isLoading) {
+            return (
+                <Loader />
+            );
+        }
+
+        else {
             return (
                 <div>
                     <div className="account-address">
@@ -141,6 +161,7 @@ class AddCertificate extends Component {
                     <div className="form-title">
                         <h1>Certificate Details</h1>
                     </div>
+                        <p>Wait for at least 15 seconds after submitting the details.</p>
                     <form className="form">
                         <div className="form-group row">
                             <label htmlFor="fname" className="col-sm-4 col-form-label">Enter First Name: </label>
