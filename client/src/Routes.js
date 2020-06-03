@@ -7,6 +7,7 @@ import AddCertificate from './components/certificate/add/AddCertificate';
 import ViewCertificate from './components/certificate/view/ViewCertificate';
 import GetTransactionDetails from './components/certificate/transaction/GetTransactionDetails';
 import Page404 from './components/other/error/page-not-found/Page404';
+import HowItWorks from './components/certificate/how it works/HowItWorks';
 
 class Routes extends Component {
   render () {
@@ -18,6 +19,7 @@ class Routes extends Component {
           <Route path="/add-certificate" component={ AddCertificate } />
           <Route path="/view-certificate" component={ ViewCertificate } />
           <Route path="/get-transaction-details" component={ GetTransactionDetails } />
+          <Route path="/how-it-works" component={ HowItWorks } />
           <Route component={ Page404 } />
         </Switch>
       </BrowserRouter>
