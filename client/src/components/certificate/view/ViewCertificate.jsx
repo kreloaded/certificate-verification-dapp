@@ -113,7 +113,7 @@ class ViewCertificate extends Component {
     render () {
         if(!this.state.isConnected) {
             return (
-                <FailedBlockchain error="Please check your Metamask !" />
+                <FailedBlockchain error="Please check your Metamask is working and you are logged in !" />
             );
         } else {
             return (
