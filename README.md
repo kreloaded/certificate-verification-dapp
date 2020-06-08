@@ -1,4 +1,4 @@
-# certificate-verification-dapp
+# Certificate Verification DApp
 ## Ethereum based certificate verification DApp
 
 ## 📦 Installation
