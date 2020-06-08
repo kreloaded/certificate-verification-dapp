@@ -1,7 +1,7 @@
 # Certificate Verification DApp
-## Ethereum based certificate verification DApp
+## Ethereum Based Certificate Verification DApp
 
-## 📦 Installation
+## 📦 Steps To Run
 
 You'll need [Git](https://git-scm.com) to run the project from source. From your command line:
 
